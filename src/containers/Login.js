@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 import logo_con_fondo from '../assets/img/logo_con_fondo.png'
 
 import firebaseApp from "../firebase/credenciales";
@@ -44,7 +43,9 @@ function Login() {
       registrarUsuario(email, password, rol);
     } else {
       // login
-      signInWithEmailAndPassword(auth, email, password);
+      signInWithEmailAndPassword(auth, email, password).catch(function(error){
+        window.alert("El Usuario no Existe[No Registrado]");
+      });
     }
   }
 
