@@ -44,7 +44,7 @@ function Login() {
     } else {
       // login
       signInWithEmailAndPassword(auth, email, password).catch(function(error){
-        window.alert("El Usuario no Existe[No Registrado]");
+        window.alert("Usuario no registrado");
       });
     }
   }
