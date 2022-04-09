@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 
 import AdminView from "../components/AdminView";
 import UserView from "../components/UserView";
@@ -12,7 +12,7 @@ import { getAuth, signOut } from "firebase/auth";
 const auth = getAuth(firebaseApp);
 
 function Home({ user, setUser}) {
-
+const  [user1,setUser] = useState({});
   const cerrarSesion = ()=>{
     let l = signOut(auth)
     .then(() => {

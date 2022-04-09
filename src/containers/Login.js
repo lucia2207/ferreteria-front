@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import logo_con_fondo from '../assets/img/logo_con_fondo.png'
-
+import Home from './Home';
 import firebaseApp from "../firebase/credenciales";
 import {
   getAuth,
@@ -14,7 +14,7 @@ const auth = getAuth(firebaseApp);
 function Login(props) {
   const firestore = getFirestore(firebaseApp);
   const [isRegistrando, setIsRegistrando] = useState(false);
-
+  const [usuarioo,setUsuarioo] = useState({});
   async function registrarUsuario(email, password, rol) {
     const infoUsuario = await createUserWithEmailAndPassword(
       auth,
@@ -22,7 +22,7 @@ function Login(props) {
       password
     ).then((usuarioFirebase) => {
       return usuarioFirebase;
-    });
+    }); 
 
     const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
     setDoc(docuRef, { correo: email, rol: rol });
@@ -51,8 +51,13 @@ function Login(props) {
          usuario: email.split("@")[0],
          rol:"admin"
        }
-       props.setUser(usuario);
+       setUsuarioo(usuario);
+       console.log(usuario,props);
+       //props.setUser(usuario);
        // ...
+       return (<>
+      
+       </>);
      })
      .catch((error) => {
        const errorCode = error.code;
@@ -63,8 +68,8 @@ function Login(props) {
     }
   }
 
-  return (
-    <div className="hero" >
+  return (<>
+   { !usuarioo && <div className="hero" >
      <div className="div-logo">
         <img className="logo" src={logo_con_fondo} />
      </div>
@@ -99,8 +104,9 @@ function Login(props) {
       <button className="form-login" onClick={() => setIsRegistrando(!isRegistrando)}>
         {isRegistrando ? "Ya tengo una cuenta" : "Quiero registrarme"}
       </button>
-    </div>
-  );
+    </div>} 
+   { usuarioo && <Home user={usuarioo}></Home> }
+    </>);
 }
 
 export default Login;
