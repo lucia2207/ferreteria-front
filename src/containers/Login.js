@@ -12,6 +12,7 @@ import { getFirestore, doc, collection, setDoc } from "firebase/firestore";
 const auth = getAuth(firebaseApp);
 
 function Login(props) {
+
   const firestore = getFirestore(firebaseApp);
   const [isRegistrando, setIsRegistrando] = useState(false);
   const [usuarioo,setUsuarioo] = useState({});
@@ -22,6 +23,10 @@ function Login(props) {
       password
     ).then((usuarioFirebase) => {
       return usuarioFirebase;
+    })
+    .catch((error)=>{
+      console.log(error.message);
+
     }); 
 
     const docuRef = doc(firestore, `usuarios/${infoUsuario.user.uid}`);
@@ -29,6 +34,7 @@ function Login(props) {
   }
 
   function submitHandler(e) {
+    
     e.preventDefault();
 
     const email = e.target.elements.email.value;
@@ -39,37 +45,13 @@ function Login(props) {
       // registrar
       registrarUsuario(email, password, rol);
     } else {
-      // login
-      signInWithEmailAndPassword(auth, email, password)  
-      .then((userCredential) => {
-       // Signed in
-       const user = userCredential.user;
-       let email = user.email;
- 
-       let usuario ={
-         email: user.email,
-         usuario: email.split("@")[0],
-         rol:"admin"
-       }
-       setUsuarioo(usuario);
-       console.log(usuario,props);
-       //props.setUser(usuario);
-       // ...
-       return (<>
-      
-       </>);
-     })
-     .catch((error) => {
-       const errorCode = error.code;
-       const errorMessage = error.message;
-       // ..
-     });
- 
+      console.log("iniciar sesion");
+      signInWithEmailAndPassword(auth, email, password);
     }
   }
 
   return (<>
-   { !usuarioo && <div className="hero" >
+   <div className="hero" >
      <div className="div-logo">
         <img className="logo" src={logo_con_fondo} />
      </div>
@@ -104,8 +86,7 @@ function Login(props) {
       <button className="form-login" onClick={() => setIsRegistrando(!isRegistrando)}>
         {isRegistrando ? "Ya tengo una cuenta" : "Quiero registrarme"}
       </button>
-    </div>} 
-   { usuarioo && <Home user={usuarioo}></Home> }
+    </div>
     </>);
 }
 

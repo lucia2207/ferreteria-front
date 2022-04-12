@@ -1,1 +1,1 @@
-export const url_base = "https://ferreterialuciaa.herokuapp.com/swagger-ui.html"
+export const HOST_API = "http://ferreterialuciaa.herokuapp.com"

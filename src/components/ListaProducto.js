@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Producto from './Producto';
-const HOST_API = "http://localhost:8080";
+import { HOST_API } from '../conexion/config';
 
 const ListaProducto = () => {
     const [productos, setProductos] = useState([]);
@@ -41,7 +41,7 @@ const ListaProducto = () => {
             headers: { 'Content-Type': 'application/json' },
         };
 
-        fetch(HOST_API + "/producto", requestOptions)
+        fetch(HOST_API + "/productos", requestOptions)
             .then(response => response.json())
             .then((p) => {
 
@@ -55,7 +55,7 @@ const ListaProducto = () => {
             headers: { 'Content-Type': 'application/json' },
         };
 
-        fetch(HOST_API + "/cliente", requestOptions)
+        fetch(HOST_API + "/clientes", requestOptions)
             .then(response => response.json())
             .then((clients) => {
                 setClientes(clients);
@@ -113,7 +113,7 @@ const ListaProducto = () => {
                 body: JSON.stringify(producto)
             };
 
-            fetch(HOST_API + "/edit/producto/" + productos[index].id, requestOptions)
+            fetch(HOST_API + "/producto/" + productos[index].id, requestOptions)
                 .then(response => response.json())
                 .then((p) => {
                     console.log(p);

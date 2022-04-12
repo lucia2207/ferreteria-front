@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-const HOST_API = "http://localhost:8080";
+import { HOST_API } from '../conexion/config';
 
 const GestionCliente = () => {
 
@@ -11,14 +11,13 @@ const GestionCliente = () => {
 
     const registrarCliente = (e) => { 
 
-        //registra el cliente con el evento del boton y limpia los campos
         e.preventDefault();
 
             if(validacionDatos){   
             let request = {
-                "nombre":nombre,
-                "celular":celular,
-                "documentoID":ci
+                "nombreCliente":nombre,
+                "telefono":celular,
+                "docId":ci
             }
 
             const requestOptions = {

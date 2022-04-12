@@ -10,6 +10,7 @@ import HistorialV from "../paginas/HistorialV";
 
 function AdminView() {
   return <div className="menu">
+  
   <header>
   <nav>
     <ul>

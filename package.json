@@ -8,13 +8,16 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.26.1",
+    "bootstrap": "^5.1.3",
     "firebase": "^9.0.0-2021720181311",
+    "jspdf": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.8",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
     "reactfire": "^4.0.0-rc.2",
+    "reactstrap": "^9.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
